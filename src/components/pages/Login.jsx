@@ -1,13 +1,11 @@
-import React from "react";
-
-function Pokemon() {
+function Login() {
   return (
     <div className="main-body-wrapper">
       <div className="page-title-wrapper">
-        <h2>POKEMONS</h2>
+        <h2>LOGIN</h2>
       </div>
     </div>
   );
 }
 
-export default Pokemon;
+export default Login;

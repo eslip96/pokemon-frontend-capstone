@@ -9,6 +9,7 @@ import NavBar from "./components/pages/navigation/Nav-bar";
 import Footer from "./components/pages/navigation/Footer";
 import Terms from "./components/pages/Terms";
 import About from "./components/pages/About";
+import "./styles/main.scss";
 
 function App() {
   return (

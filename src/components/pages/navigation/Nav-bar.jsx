@@ -1,12 +1,25 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <div>
-      <NavLink to="/home">Home</NavLink>
-      <NavLink to="/pokemons">Pokemons</NavLink>
-      <NavLink to="/team">Teams</NavLink>
-      <NavLink to="/users">Users</NavLink>
+    <div class="framed">
+      <div class="framed-primary">
+        <ul>
+          <li>
+            <NavLink to="/home">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/pokemons">Pokemons</NavLink>
+          </li>
+          <li>
+            <NavLink to="/team">Teams</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
