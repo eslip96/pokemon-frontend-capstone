@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
-import Login from "./components/pages/auth/Login";
+import Login from "./components/pages/Login";
 import Pokemon from "./components/pages/Pokemon";
 import Pokemons from "./components/pages/Pokemons";
 import Team from "./components/pages/Team";

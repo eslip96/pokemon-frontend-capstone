@@ -35,6 +35,37 @@
             background-color: #111;
           }
         }
+
+        &.hover-menu {
+          display: flex;
+          position: relative;
+          &:hover {
+            ul {
+              display: flex;
+            }
+          }
+
+          ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background-color: #f9f9f9;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ddd;
+          }
+
+          li {
+            display: flex;
+            padding: 10px;
+
+            &:hover {
+              background-color: #ddd;
+            }
+          }
+        }
       }
     }
   }

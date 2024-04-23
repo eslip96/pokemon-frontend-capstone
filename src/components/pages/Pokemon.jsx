@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 function Pokemon() {
   return (
     <div className="main-body-wrapper">
