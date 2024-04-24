@@ -32,8 +32,19 @@ function NavBar() {
             </ul>
           </li>
 
-          <li>
-            <NavLink to="/login">Login</NavLink>
+          <li className="hover-menu">
+            <span>Login</span>
+            <ul>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+              <li>
+                <NavLink to="/create/profile">Create a Profile</NavLink>
+              </li>
+              <li>
+                <NavLink to="/profile">Profile</NavLink>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

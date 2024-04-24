@@ -3,8 +3,10 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-direction: column;
 
   .page-title-wrapper {
     display: flex;
+    height: 100px;
   }
 }

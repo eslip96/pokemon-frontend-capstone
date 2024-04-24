@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -15,8 +17,13 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const isAuthenticated = true;
+
+    if (isAuthenticated) {
+      history.push("/home");
+    } else {
+      console.log("Authentication failed");
+    }
 
     setEmail("");
     setPassword("");

@@ -10,6 +10,8 @@ import Footer from "./components/pages/navigation/Footer";
 import Terms from "./components/pages/Terms";
 import About from "./components/pages/About";
 import "./styles/main.scss";
+import Profile from "./components/pages/Profile";
+import CreateProfile from "./components/pages/CreateProfile";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/pokemon" component={Pokemon} />
           <Route path="/pokemons" component={Pokemons} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/create/profile" component={CreateProfile} />
           <Route path="/team" component={Team} />
           <Route path="/users" component={Users} />
           <Route path="/terms" component={Terms} />
