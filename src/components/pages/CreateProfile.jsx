@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { useHistory } from "react-router-dom";
+
 function CreateProfile({ first_name, last_name, email, password, role }) {
   const [formData, setFormData] = useState({
     first_name: first_name || "",
@@ -10,6 +12,7 @@ function CreateProfile({ first_name, last_name, email, password, role }) {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const history = useHistory();
 
   const handleFieldUpdate = (e) => {
     const { name, value } = e.target;
@@ -20,23 +23,14 @@ function CreateProfile({ first_name, last_name, email, password, role }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8086/pokemon/user", {
+      const response = fetch("http://localhost:8086/pokemon/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        console.log("Create profile successful");
-        setSuccessMessage("User added successfully");
-        setErrorMessage("");
-      } else {
-        console.error("Create profile failed");
-        setSuccessMessage("");
-        setErrorMessage("Unable to add user");
-      }
+      history.push("/login");
     } catch (error) {
       console.error("Error creating profile:", error.message);
       setSuccessMessage("");

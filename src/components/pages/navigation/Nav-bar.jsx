@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuthInfo } from "../../../context/AuthContext";
 
 function NavBar() {
+  const { userInfo, login, logout } = useAuthInfo();
+
   return (
     <div className="framed">
       <div className="framed-primary">
@@ -16,7 +19,7 @@ function NavBar() {
                 <NavLink to="/pokemon">POKEMON CREATOR</NavLink>
               </li>
               <li>
-                <NavLink to="/pokemon">POKEMON GALLERY</NavLink>
+                <NavLink to="/pokemons">POKEMON GALLERY</NavLink>
               </li>
             </ul>
           </li>
@@ -24,7 +27,7 @@ function NavBar() {
             <span>Teams</span>
             <ul>
               <li>
-                <NavLink to="/pokemon">Team Creator</NavLink>
+                <NavLink to="/team">Team Creator</NavLink>
               </li>
               <li>
                 <NavLink to="/pokemon">Team GALLERY</NavLink>
@@ -33,10 +36,16 @@ function NavBar() {
           </li>
 
           <li className="hover-menu">
-            <span>Login</span>
+            <span>Profile</span>
             <ul>
               <li>
-                <NavLink to="/login">Login</NavLink>
+                {userInfo ? (
+                  <NavLink onClick={logout} to="/login">
+                    Logout
+                  </NavLink>
+                ) : (
+                  <NavLink to="/login">Login</NavLink>
+                )}
               </li>
               <li>
                 <NavLink to="/create/profile">Create a Profile</NavLink>

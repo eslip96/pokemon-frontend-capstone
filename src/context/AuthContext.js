@@ -1,67 +1,68 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext"; // Import useAuth hook
+import { useContext, createContext, useState } from "react";
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-  const { login } = useAuth(); // Access the login function from the authentication context
+const AuthContext = createContext();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+export const AuthProvider = ({ children }) => {
+  const [userInfo, setUserInfo] = useState(null);
+
+  function login(email, password) {
+    const body = {
+      email: email,
+      password: password,
+    };
+    fetch("http://localhost:8086/user/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.error("login failed");
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setUserInfo(data.result);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("login error:", error);
+      });
+  }
+  function logout() {
+    console.log(userInfo);
+    fetch(`http://localhost:8086/user/logout/${userInfo.auth_token}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.error("logout failed");
+        } else {
+          setUserInfo(null);
+          console.log("Logout successful");
+        }
+      })
+      .catch((error) => {
+        console.error("logout error:", error);
+      });
+  }
+
+  const values = {
+    userInfo,
+    login,
+    logout,
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Call the login function from the authentication context
-      await login(email, password);
-      // If login is successful, redirect to the home page
-      history.push("/home");
-    } catch (error) {
-      console.error("Authentication error:", error.message);
-    }
-
-    setEmail("");
-    setPassword("");
-  };
-
-  return (
-    <div className="login-container">
-      <div className="login-wrapper">
-        <h2>Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-          </div>
-          <button className="login-button" type="submit">
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-export default Login;
+export const useAuthInfo = () => {
+  return useContext(AuthContext);
+};

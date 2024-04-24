@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
+import Login from "./components/pages/auth/Login";
 import Pokemon from "./components/pages/Pokemon";
 import Pokemons from "./components/pages/Pokemons";
 import Team from "./components/pages/Team";
@@ -12,6 +12,7 @@ import About from "./components/pages/About";
 import "./styles/main.scss";
 import Profile from "./components/pages/Profile";
 import CreateProfile from "./components/pages/CreateProfile";
+import PrivateRoute from "./components/pages/routing/PrivateRouting";
 
 function App() {
   return (
@@ -21,11 +22,11 @@ function App() {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/pokemon" component={Pokemon} />
-          <Route path="/pokemons" component={Pokemons} />
-          <Route path="/profile" component={Profile} />
+          <PrivateRoute path="/pokemon" component={Pokemon} />
+          <PrivateRoute path="/pokemons" component={Pokemons} />
+          <PrivateRoute path="/profile" component={Profile} />
           <Route path="/create/profile" component={CreateProfile} />
-          <Route path="/team" component={Team} />
+          <PrivateRoute path="/team" component={Team} />
           <Route path="/users" component={Users} />
           <Route path="/terms" component={Terms} />
           <Route path="/about" component={About} />
