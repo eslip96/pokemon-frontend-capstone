@@ -40,7 +40,7 @@ function CreateProfile({ first_name, last_name, email, password, role }) {
 
   return (
     <div className="box-container">
-      <div className="main-body-wrapper">
+      <div className="main-body-container">
         <div className="page-title-wrapper">
           <h2>Create profile</h2>
         </div>

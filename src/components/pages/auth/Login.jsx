@@ -32,8 +32,8 @@ function Login() {
     }
   }, [userInfo]);
   return (
-    <div className="login-container">
-      <div className="login-wrapper">
+    <div className="form-container">
+      <div className="form-wrapper">
         <h2>Login</h2>
         <form className="login-form" onSubmit={handleSubmit}>
           <div>

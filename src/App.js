@@ -10,7 +10,6 @@ import Footer from "./components/pages/navigation/Footer";
 import Terms from "./components/pages/Terms";
 import About from "./components/pages/About";
 import "./styles/main.scss";
-import Profile from "./components/pages/Profile";
 import CreateProfile from "./components/pages/CreateProfile";
 import PrivateRoute from "./components/pages/routing/PrivateRouting";
 
@@ -24,7 +23,6 @@ function App() {
           <Route path="/login" component={Login} />
           <PrivateRoute path="/pokemon" component={Pokemon} />
           <PrivateRoute path="/pokemons" component={Pokemons} />
-          <PrivateRoute path="/profile" component={Profile} />
           <Route path="/create/profile" component={CreateProfile} />
           <PrivateRoute path="/team" component={Team} />
           <Route path="/users" component={Users} />

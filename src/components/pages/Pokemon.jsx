@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import { useAuthInfo } from "../../context/AuthContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function AddType() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
   });
+  const history = useHistory();
 
   const handleFieldUpdate = (e) => {
     const { name, value } = e.target;
@@ -27,6 +28,7 @@ function AddType() {
 
       if (response.ok) {
         console.log("Type added successfully");
+        history.push("/pokemons");
       } else {
         console.error("Unable to add type");
       }
@@ -34,19 +36,40 @@ function AddType() {
       console.error("Error adding type:", error.message);
     }
   };
-  return null;
+
+  return (
+    <div className="main-body-container">
+      <div className="main-body-wrapper">
+        <div className="form-container">
+          <h2>Add Type</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Type Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleFieldUpdate}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description:</label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleFieldUpdate}
+                required
+              />
+            </div>
+            <button type="submit">Add Type</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default AddType;
-
-// function Pokemon() {
-//   return (
-//     <div className="main-body-wrapper">
-//       <div className="page-title-wrapper">
-//         <h2>Pokemon Creator</h2>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Pokemon;
