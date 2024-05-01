@@ -8,6 +8,7 @@ function AddType() {
     description: "",
   });
   const history = useHistory();
+  const { userInfo } = useAuthInfo();
 
   const handleFieldUpdate = (e) => {
     const { name, value } = e.target;
@@ -22,6 +23,7 @@ function AddType() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          auth: String(userInfo.auth_token),
         },
         body: JSON.stringify(formData),
       });
